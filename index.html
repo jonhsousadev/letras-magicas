@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura das Letras Mágicas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="game-container" class="bg-white p-6 rounded-[40px] shadow-2xl border-8 border-white max-w-lg w-full text-center relative min-h-[600px] flex flex-col">
+        
+        <div id="screen-start" class="flex-1 flex flex-col items-center justify-center space-y-4 animate-pop">
+            <div class="text-8xl mb-2 floating">🎨</div>
+            <h1 class="text-4xl font-black text-sky-600">Letras Mágicas</h1>
+            
+            <button id="btn-start" class="bg-green-500 hover:bg-green-600 text-white px-12 py-5 rounded-full text-3xl font-black shadow-xl transition-transform active:scale-95 border-b-8 border-green-700 w-full">
+                JOGAR! 🚀
+            </button>
+
+            <div class="w-full bg-sky-100 p-4 rounded-3xl border-2 border-sky-200 mt-4">
+                <h3 class="text-sky-700 font-black mb-2 flex items-center justify-center gap-2 text-lg">
+                    🏆 Melhores Pontuações
+                </h3>
+                <div id="high-scores-list" class="space-y-1 text-sm font-bold text-sky-800">
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-playing" class="flex-1 flex flex-col hidden-screen">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex-1 bg-gray-100 h-4 rounded-full mr-4 overflow-hidden">
+                    <div id="progress-bar" class="progress-bar-inner h-full bg-green-400" style="width: 0%"></div>
+                </div>
+                <div class="bg-yellow-100 px-3 py-1 rounded-full flex items-center gap-2 border border-yellow-200">
+                    <span class="text-lg">⭐</span>
+                    <span id="current-score" class="font-bold text-yellow-700">0</span>
+                </div>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center">
+                <div class="mb-4">
+                    <h1 id="display-letter" class="text-9xl font-black drop-shadow-lg animate-bounce">A</h1>
+                    <p class="text-gray-600 text-xl font-bold mt-2">Qual começa com esta letra?</p>
+                </div>
+                
+                <div id="options-grid" class="grid grid-cols-3 gap-3">
+                </div>
+
+                <div class="h-16 flex items-center justify-center mt-2">
+                    <p id="feedback-text" class="text-xl font-black transition-all scale-90 opacity-0"></p>
+                </div>
+            </div>
+            
+            <p id="phase-counter" class="text-gray-300 text-xs mt-2 uppercase font-bold">Fase 1 de 20</p>
+        </div>
+
+        <div id="screen-success" class="flex-1 flex flex-col items-center justify-center hidden-screen animate-pop">
+            <div class="text-9xl mb-4">👑</div>
+            <h2 class="text-4xl font-black text-green-600 leading-none uppercase">Fantástico!</h2>
+            <div class="bg-yellow-100 p-6 rounded-3xl border-4 border-yellow-300 my-6 w-full">
+                <p class="text-yellow-800 font-bold mb-1 text-xl">Pontuação Final:</p>
+                <span id="final-score-display" class="text-6xl font-black text-yellow-700">⭐ 0</span>
+            </div>
+            <button id="btn-restart" class="bg-sky-500 hover:bg-sky-600 text-white px-10 py-4 rounded-full text-2xl font-black shadow-lg transition-transform active:scale-95">
+                VOLTAR AO INÍCIO 🔄
+            </button>
+        </div>
+
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
