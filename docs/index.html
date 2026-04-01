@@ -2,35 +2,63 @@
 <html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aventura das Letras Mágicas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="description" content="Jogo educativo para aprender letras e formar palavras">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Letras Mágicas">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon.svg">
+    <title>Letras Mágicas</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <script type="module" crossorigin src="/letras-magicas/assets/index-i7sPwmdy.js"></script>
-  <link rel="stylesheet" crossorigin href="/letras-magicas/assets/index-CBF5YqFP.css">
+  <script type="module" crossorigin src="/assets/index-BWYCymae.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-j757wvA1.css">
 </head>
 <body>
-    <div id="game-container" class="bg-white p-6 rounded-[40px] shadow-2xl border-8 border-white max-w-lg w-full text-center relative min-h-[600px] flex flex-col">
+    <div id="game-container" class="bg-white p-4 md:p-6 rounded-none md:rounded-[40px] shadow-none md:shadow-2xl border-none md:border-8 md:border-white max-w-lg w-full mx-auto text-center relative min-h-screen md:min-h-[600px] flex flex-col">
         
         <div id="screen-start" class="flex-1 flex flex-col items-center justify-center space-y-4 animate-pop">
-            <div class="text-8xl mb-2 floating">🎨</div>
-            <h1 class="text-4xl font-black text-sky-600">Letras Mágicas</h1>
+            <div class="text-6xl md:text-8xl mb-4 floating">🎨</div>
+            <h1 class="text-2xl md:text-4xl font-black text-sky-600">Letras Mágicas</h1>
             
-            <button id="btn-start" class="bg-green-500 hover:bg-green-600 text-white px-12 py-5 rounded-full text-3xl font-black shadow-xl transition-transform active:scale-95 border-b-8 border-green-700 w-full">
-                JOGAR! 🚀
-            </button>
+            <div class="w-full space-y-3 mt-4">
+                <p class="text-gray-600 font-bold text-sm">Escolhe o modo de jogo:</p>
+                
+                <button id="btn-start-classic" class="bg-green-500 active:bg-green-600 text-white px-6 py-4 rounded-2xl text-lg md:text-xl font-black shadow-xl transition-transform active:scale-95 border-b-4 border-green-700 w-full flex items-center justify-center gap-3">
+                    <span class="text-2xl md:text-3xl">🎯</span>
+                    <span>Modo Clássico</span>
+                </button>
+                
+                <button id="btn-start-syllables" class="bg-purple-500 active:bg-purple-600 text-white px-6 py-4 rounded-2xl text-lg md:text-xl font-black shadow-xl transition-transform active:scale-95 border-b-4 border-purple-700 w-full flex items-center justify-center gap-3">
+                    <span class="text-2xl md:text-3xl">✂️</span>
+                    <span>Formar Palavras</span>
+                </button>
+            </div>
 
             <div class="w-full bg-sky-100 p-4 rounded-3xl border-2 border-sky-200 mt-4">
                 <h3 class="text-sky-700 font-black mb-2 flex items-center justify-center gap-2 text-lg">
                     🏆 Melhores Pontuações
                 </h3>
-                <div id="high-scores-list" class="space-y-1 text-sm font-bold text-sky-800">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <p class="text-sky-600 text-xs font-bold mb-1">🎯 Clássico</p>
+                        <div id="high-scores-classic" class="space-y-1 text-xs font-bold text-sky-800"></div>
+                    </div>
+                    <div>
+                        <p class="text-purple-600 text-xs font-bold mb-1">✂️ Palavras</p>
+                        <div id="high-scores-syllables" class="space-y-1 text-xs font-bold text-purple-800"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="screen-playing" class="flex-1 flex flex-col hidden-screen">
             <div class="flex justify-between items-center mb-4">
-                <div class="flex-1 bg-gray-100 h-4 rounded-full mr-4 overflow-hidden">
+                <button id="btn-quit" class="bg-gray-200 active:bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-sm font-bold transition-colors">
+                    ❌ Sair
+                </button>
+                <div class="flex-1 bg-gray-100 h-4 rounded-full mx-4 overflow-hidden">
                     <div id="progress-bar" class="progress-bar-inner h-full bg-green-400" style="width: 0%"></div>
                 </div>
                 <div class="bg-yellow-100 px-3 py-1 rounded-full flex items-center gap-2 border border-yellow-200">
@@ -41,33 +69,63 @@
 
             <div class="flex-1 flex flex-col justify-center">
                 <div class="mb-4">
-                    <h1 id="display-letter" class="text-9xl font-black drop-shadow-lg animate-bounce">A</h1>
-                    <p class="text-gray-600 text-xl font-bold mt-2">Qual começa com esta letra?</p>
+                    <div id="display-letter-container">
+                        <h1 id="display-letter" class="text-5xl md:text-9xl font-black drop-shadow-lg animate-bounce">A</h1>
+                    </div>
+                    <div id="display-emoji-container">
+                        <span id="display-emoji" class="text-5xl md:text-9xl">🍎</span>
+                    </div>
+                    <div id="display-syllables-container">
+                        <div id="display-word-preview" class="h-16 flex items-center justify-center flex-wrap gap-2"></div>
+                    </div>
+                    <p id="game-question" class="text-gray-600 text-xl font-bold mt-4">Qual começa com esta letra?</p>
                 </div>
                 
-                <div id="options-grid" class="grid grid-cols-3 gap-3">
-                </div>
+                <div id="options-grid" class="grid grid-cols-3 gap-3"></div>
 
-                <div class="h-16 flex items-center justify-center mt-2">
+                <div id="syllables-grid" class="grid grid-cols-4 gap-2"></div>
+
+                <div class="h-16 flex items-center justify-center mt-4">
                     <p id="feedback-text" class="text-xl font-black transition-all scale-90 opacity-0"></p>
                 </div>
             </div>
             
-            <p id="phase-counter" class="text-gray-300 text-xs mt-2 uppercase font-bold">Fase 1 de 20</p>
+            <div class="flex justify-between items-center">
+                <p id="phase-counter" class="text-gray-300 text-xs mt-2 uppercase font-bold">Fase 1 de 20</p>
+                <div id="attempts-display" class="flex gap-1 mt-2">
+                    <span class="text-lg">❤️</span>
+                    <span class="text-lg">❤️</span>
+                </div>
+            </div>
         </div>
 
         <div id="screen-success" class="flex-1 flex flex-col items-center justify-center hidden-screen animate-pop">
-            <div class="text-9xl mb-4">👑</div>
-            <h2 class="text-4xl font-black text-green-600 leading-none uppercase">Fantástico!</h2>
+            <div class="text-5xl md:text-9xl mb-4">👑</div>
+            <h2 class="text-2xl md:text-4xl font-black text-green-600 leading-none uppercase">Fantástico!</h2>
             <div class="bg-yellow-100 p-6 rounded-3xl border-4 border-yellow-300 my-6 w-full">
                 <p class="text-yellow-800 font-bold mb-1 text-xl">Pontuação Final:</p>
-                <span id="final-score-display" class="text-6xl font-black text-yellow-700">⭐ 0</span>
+                <span id="final-score-display" class="text-4xl md:text-6xl font-black text-yellow-700">⭐ 0</span>
             </div>
-            <button id="btn-restart" class="bg-sky-500 hover:bg-sky-600 text-white px-10 py-4 rounded-full text-2xl font-black shadow-lg transition-transform active:scale-95">
+            <button id="btn-restart" class="bg-sky-500 active:bg-sky-600 text-white px-10 py-4 rounded-full text-2xl font-black shadow-lg transition-transform active:scale-95">
                 VOLTAR AO INÍCIO 🔄
             </button>
         </div>
 
+    </div>
+
+    <div id="modal-quit" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <h3 class="text-2xl font-black text-gray-800 mb-2">⛔ Sair do Jogo?</h3>
+            <p class="text-gray-600 mb-6">A tua pontuação atual não será guardada.</p>
+            <div class="flex gap-3">
+                <button id="btn-quit-cancel" class="flex-1 bg-gray-200 active:bg-gray-300 text-gray-700 px-4 py-3 rounded-2xl font-bold transition-colors">
+                    Continuar
+                </button>
+                <button id="btn-quit-confirm" class="flex-1 bg-red-500 active:bg-red-600 text-white px-4 py-3 rounded-2xl font-bold transition-colors">
+                    Sair
+                </button>
+            </div>
+        </div>
     </div>
 
 </body>

@@ -1,17 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #f0f9ff;
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    overflow: hidden;
+    overflow-x: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 1rem;
+    min-height: 100dvh;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 420px;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+@media (min-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    
+    #game-container {
+        min-height: auto;
+        max-height: 90vh;
+        border-radius: 40px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border: 8px solid white;
+    }
 }
 
 .floating {
@@ -27,12 +57,72 @@ body {
     display: none !important;
 }
 
+#display-letter-container {
+    display: none;
+}
+
+#display-letter {
+    font-size: clamp(6.5rem, 32vw, 8rem);
+    line-height: 1;
+}
+
+#display-emoji-container {
+    display: none;
+}
+
+#display-emoji {
+    font-size: clamp(5.5rem, 26vw, 7rem);
+    line-height: 1;
+}
+
+#display-syllables-container {
+    display: none;
+}
+
+#syllables-grid {
+    display: none;
+}
+
+#options-grid {
+    display: grid;
+}
+
 .btn-emoji {
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-height: 70px;
+    touch-action: manipulation;
 }
 
 .btn-emoji:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
+}
+
+#options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+#syllables-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+@media (max-width: 380px) {
+    #syllables-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    #display-letter {
+        font-size: 9rem;
+    }
+
+    #display-emoji {
+        font-size: 8rem;
+    }
 }
 
 .animate-pop {
@@ -57,4 +147,11 @@ body {
 
 .progress-bar-inner {
     transition: width 0.5s ease-in-out;
+}
+
+button {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
