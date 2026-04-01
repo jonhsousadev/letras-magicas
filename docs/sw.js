@@ -1,10 +1,12 @@
 const CACHE_NAME = 'letras-magicas-v1';
+const BASE_PATH = '/letras-magicas';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/letras-magicas/',
+  '/letras-magicas/index.html',
+  '/letras-magicas/src/main.js',
+  '/letras-magicas/src/style.css',
+  '/letras-magicas/src/assets/data.json',
+  '/letras-magicas/manifest.json'
 ];
 
 self.addEventListener('install', event => {
