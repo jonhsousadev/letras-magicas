@@ -109,9 +109,19 @@ body {
     gap: 0.5rem;
 }
 
+.syllable-btn {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+}
+
 @media (max-width: 380px) {
     #syllables-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .syllable-btn {
+        font-size: 1.1rem;
+        padding: 0.5rem;
     }
 }
 

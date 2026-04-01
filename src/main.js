@@ -3,28 +3,13 @@ import libraryData from './assets/data.json';
 
 const library = libraryData;
 
-const classicLibrary = [
-    { letter: 'A', correct: '🌈', options: ['🌈', '⭐', '☁️'], name: 'Arco-íris', color: 'text-pink-500' },
-    { letter: 'B', correct: '🐋', options: ['🐋', '🐻', '🦈'], name: 'Baleia', color: 'text-blue-500' },
-    { letter: 'C', correct: '🏠', options: ['🏠', '🏫', '🏥'], name: 'Casa', color: 'text-yellow-600' },
-    { letter: 'D', correct: '🦷', options: ['🦷', '🦴', '🦦'], name: 'Dente', color: 'text-gray-500' },
-    { letter: 'E', correct: '⭐', options: ['⭐', '☀️', '🌙'], name: 'Estrela', color: 'text-yellow-500' },
-    { letter: 'F', correct: '🔥', options: ['🔥', '💧', '🧊'], name: 'Fogo', color: 'text-orange-500' },
-    { letter: 'G', correct: '🐈', options: ['🐈', '🐕', '🐇'], name: 'Gato', color: 'text-orange-400' },
-    { letter: 'H', correct: '🏥', options: ['🏥', '🏠', '🏫'], name: 'Hospital', color: 'text-red-500' },
-    { letter: 'L', correct: '🦁', options: ['🦁', '🐯', '🐻'], name: 'Leão', color: 'text-yellow-600' },
-    { letter: 'M', correct: '🍎', options: ['🍎', '🍌', '🍊'], name: 'Maçã', color: 'text-red-600' },
-    { letter: 'N', correct: '☁️', options: ['☁️', '⚡', '🌈'], name: 'Nuvem', color: 'text-sky-400' },
-    { letter: 'O', correct: '🥚', options: ['🥚', '🍕', '🧀'], name: 'Ovo', color: 'text-yellow-300' },
-    { letter: 'P', correct: '🐷', options: ['🐷', '🐮', '🐑'], name: 'Porco', color: 'text-pink-400' },
-    { letter: 'Q', correct: '🧀', options: ['🧀', '🥚', '🍕'], name: 'Queijo', color: 'text-yellow-400' },
-    { letter: 'R', correct: '⚡', options: ['⚡', '☁️', '🌈'], name: 'Relâmpago', color: 'text-yellow-500' },
-    { letter: 'S', correct: '🐸', options: ['🐸', '🐢', '🦎'], name: 'Sapo', color: 'text-green-500' },
-    { letter: 'T', correct: '🐢', options: ['🐢', '🐇', '🦔'], name: 'Tartaruga', color: 'text-emerald-600' },
-    { letter: 'U', correct: '🐻', options: ['🐻', '🐼', '🐰'], name: 'Urso', color: 'text-amber-700' },
-    { letter: 'V', correct: '🎻', options: ['🎻', '🎸', '🎺'], name: 'Violino', color: 'text-amber-600' },
-    { letter: 'Z', correct: '🦓', options: ['🦓', '🦒', '🐘'], name: 'Zebra', color: 'text-gray-800' }
-];
+const classicLibrary = library.map(({ letter, correct, options, name, color }) => ({
+    letter,
+    correct,
+    options,
+    name,
+    color
+}));
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -270,7 +255,7 @@ const initSyllablesLevel = () => {
     
     allSyllables.forEach(syllable => {
         const btn = document.createElement('button');
-        btn.className = "bg-white border-4 border-purple-200 hover:border-purple-400 rounded-2xl p-3 text-2xl font-black text-purple-700 shadow-sm transition-all active:scale-95";
+        btn.className = "syllable-btn bg-white border-4 border-purple-200 hover:border-purple-400 rounded-2xl p-3 text-2xl font-black text-purple-700 shadow-sm transition-all active:scale-95";
         btn.innerText = syllable;
         btn.onclick = () => handleSyllableClick(syllable, btn);
         elSyllablesGrid.appendChild(btn);
@@ -371,6 +356,7 @@ const finishGame = () => {
 
 const startGame = (mode) => {
     playSound('start');
+    elModalQuit.classList.add('hidden');
     score = 0;
     currentLevelIndex = 0;
     currentMode = mode;
@@ -407,5 +393,17 @@ document.getElementById('btn-quit-confirm').onclick = () => {
     updateHighScores();
     showScreen('start');
 };
+
+elModalQuit.onclick = (event) => {
+    if (event.target === elModalQuit) {
+        elModalQuit.classList.add('hidden');
+    }
+};
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        elModalQuit.classList.add('hidden');
+    }
+});
 
 window.onload = updateHighScores;

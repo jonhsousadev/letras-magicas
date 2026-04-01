@@ -1,228 +1,192 @@
 [
   {
     "letter": "A",
-    "correct": "🍎",
-    "options": ["🍎", "🍌", "🍊"],
-    "name": "Maçã",
-    "syllables": ["MA", "ÇÃ"],
-    "distractors": ["A", "E", "I", "O"],
-    "color": "text-red-600"
+    "correct": "🐝",
+    "options": ["🐝", "🦋", "🐞"],
+    "name": "Abelha",
+    "syllables": ["A", "BE", "LHA"],
+    "distractors": ["BO", "LA", "CA", "SA"],
+    "color": "text-yellow-500"
   },
   {
     "letter": "B",
-    "correct": "🐻",
-    "options": ["🐻", "🐰", "🐼"],
-    "name": "Urso",
-    "syllables": ["UR", "SO"],
-    "distractors": ["BA", "BE", "BI", "BU"],
-    "color": "text-amber-700"
+    "correct": "⚽",
+    "options": ["⚽", "🏀", "🎾"],
+    "name": "Bola",
+    "syllables": ["BO", "LA"],
+    "distractors": ["BA", "BE", "LI", "LU"],
+    "color": "text-slate-700"
   },
   {
     "letter": "C",
-    "correct": "🐈",
-    "options": ["🐈", "🐕", "🐇"],
-    "name": "Gato",
-    "syllables": ["GA", "TO"],
-    "distractors": ["CE", "CI", "CO", "CU"],
-    "color": "text-orange-400"
-  },
-  {
-    "letter": "D",
-    "correct": "🐕",
-    "options": ["🐕", "🐈", "🐇"],
-    "name": "Cão",
-    "syllables": ["CÃO"],
-    "distractors": ["DA", "DE", "DI", "DU"],
-    "color": "text-amber-600"
-  },
-  {
-    "letter": "E",
-    "correct": "🍆",
-    "options": ["🍆", "🥕", "🌽"],
-    "name": "Beringela",
-    "syllables": ["BE", "RIN", "GE", "LA"],
-    "distractors": ["A", "I", "O", "U"],
-    "color": "text-purple-600"
-  },
-  {
-    "letter": "F",
-    "correct": "🐸",
-    "options": ["🐸", "🐢", "🦎"],
-    "name": "Sapo",
-    "syllables": ["SA", "PO"],
-    "distractors": ["FA", "FE", "FI", "FU"],
-    "color": "text-green-500"
-  },
-  {
-    "letter": "G",
-    "correct": "🍇",
-    "options": ["🍇", "🍓", "🍒"],
-    "name": "Uva",
-    "syllables": ["U", "VA"],
-    "distractors": ["GA", "GE", "GI", "GO"],
-    "color": "text-purple-500"
-  },
-  {
-    "letter": "H",
     "correct": "🏠",
     "options": ["🏠", "🏫", "🏥"],
     "name": "Casa",
     "syllables": ["CA", "SA"],
-    "distractors": ["HA", "HI", "HO", "HU"],
+    "distractors": ["CO", "CU", "LA", "MA"],
     "color": "text-yellow-600"
+  },
+  {
+    "letter": "D",
+    "correct": "🎲",
+    "options": ["🎲", "🧩", "🎯"],
+    "name": "Dado",
+    "syllables": ["DA", "DO"],
+    "distractors": ["DE", "DI", "BO", "TO"],
+    "color": "text-red-500"
+  },
+  {
+    "letter": "E",
+    "correct": "⭐",
+    "options": ["⭐", "☀️", "🌙"],
+    "name": "Estrela",
+    "syllables": ["ES", "TRE", "LA"],
+    "distractors": ["TA", "LI", "PO", "CA"],
+    "color": "text-yellow-400"
+  },
+  {
+    "letter": "F",
+    "correct": "🌸",
+    "options": ["🌸", "🌷", "🌻"],
+    "name": "Flor",
+    "syllables": ["FLOR"],
+    "distractors": ["FA", "FE", "FI", "FO"],
+    "color": "text-pink-500"
+  },
+  {
+    "letter": "G",
+    "correct": "🐈",
+    "options": ["🐈", "🐕", "🐇"],
+    "name": "Gato",
+    "syllables": ["GA", "TO"],
+    "distractors": ["GE", "GI", "CA", "PO"],
+    "color": "text-orange-400"
+  },
+  {
+    "letter": "H",
+    "correct": "🏨",
+    "options": ["🏨", "🏠", "🏫"],
+    "name": "Hotel",
+    "syllables": ["HO", "TEL"],
+    "distractors": ["HA", "HI", "TO", "CA"],
+    "color": "text-rose-500"
   },
   {
     "letter": "I",
-    "correct": "🧊",
-    "options": ["🧊", "🔥", "💧"],
-    "name": "Gelo",
-    "syllables": ["GE", "LO"],
-    "distractors": ["A", "E", "O", "U"],
-    "color": "text-sky-300"
+    "correct": "🏝️",
+    "options": ["🏝️", "⛵", "🌊"],
+    "name": "Ilha",
+    "syllables": ["I", "LHA"],
+    "distractors": ["LA", "LI", "LU", "NA"],
+    "color": "text-sky-400"
   },
   {
     "letter": "J",
-    "correct": "🧩",
-    "options": ["🧩", "🎮", "🎯"],
-    "name": "Puzzle",
-    "syllables": ["PUZ", "ZLE"],
-    "distractors": ["JA", "JE", "JI", "JO"],
-    "color": "text-blue-500"
-  },
-  {
-    "letter": "K",
-    "correct": "🥝",
-    "options": ["🥝", "🍎", "🍐"],
-    "name": "Kiwi",
-    "syllables": ["KI", "WI"],
-    "distractors": ["KA", "KE", "KO", "KU"],
-    "color": "text-green-500"
+    "correct": "🪟",
+    "options": ["🪟", "🚪", "🪑"],
+    "name": "Janela",
+    "syllables": ["JA", "NE", "LA"],
+    "distractors": ["JE", "JI", "CA", "SA"],
+    "color": "text-cyan-500"
   },
   {
     "letter": "L",
-    "correct": "🦁",
-    "options": ["🦁", "🐯", "🐻"],
-    "name": "Leão",
-    "syllables": ["LE", "ÃO"],
-    "distractors": ["LA", "LE", "LI", "LO"],
-    "color": "text-yellow-600"
-  },
-  {
-    "letter": "M",
     "correct": "🌙",
     "options": ["🌙", "☀️", "⭐"],
     "name": "Lua",
     "syllables": ["LU", "A"],
-    "distractors": ["MA", "ME", "MI", "MU"],
+    "distractors": ["LA", "LE", "LI", "MA"],
     "color": "text-blue-400"
   },
   {
+    "letter": "M",
+    "correct": "🍎",
+    "options": ["🍎", "🍌", "🍊"],
+    "name": "Maçã",
+    "syllables": ["MA", "ÇÃ"],
+    "distractors": ["ME", "MI", "MO", "LA"],
+    "color": "text-red-600"
+  },
+  {
     "letter": "N",
-    "correct": "🌧️",
-    "options": ["🌧️", "⛈️", "❄️"],
-    "name": "Chuva",
-    "syllables": ["CHU", "VA"],
-    "distractors": ["NA", "NE", "NI", "NO"],
-    "color": "text-gray-400"
+    "correct": "🚢",
+    "options": ["🚢", "⛵", "🚂"],
+    "name": "Navio",
+    "syllables": ["NA", "VI", "O"],
+    "distractors": ["NE", "NI", "VA", "LU"],
+    "color": "text-blue-500"
   },
   {
     "letter": "O",
-    "correct": "🐙",
-    "options": ["🐙", "🦑", "🦐"],
-    "name": "Polvo",
-    "syllables": ["POL", "VO"],
-    "distractors": ["A", "E", "I", "U"],
-    "color": "text-purple-400"
+    "correct": "🥚",
+    "options": ["🥚", "🧀", "🍞"],
+    "name": "Ovo",
+    "syllables": ["O", "VO"],
+    "distractors": ["A", "E", "VI", "TO"],
+    "color": "text-amber-300"
   },
   {
     "letter": "P",
-    "correct": "🐷",
-    "options": ["🐷", "🐮", "🐑"],
-    "name": "Porco",
-    "syllables": ["POR", "CO"],
-    "distractors": ["PA", "PE", "PI", "PO"],
-    "color": "text-pink-400"
+    "correct": "🦆",
+    "options": ["🦆", "🐔", "🐦"],
+    "name": "Pato",
+    "syllables": ["PA", "TO"],
+    "distractors": ["PE", "PI", "CA", "BO"],
+    "color": "text-emerald-500"
   },
   {
     "letter": "Q",
     "correct": "🧀",
-    "options": ["🧀", "🍕", "🥚"],
+    "options": ["🧀", "🥚", "🍞"],
     "name": "Queijo",
     "syllables": ["QUEI", "JO"],
-    "distractors": ["QUA", "QUE", "QUI", "QUO"],
+    "distractors": ["QUA", "QUI", "LA", "TO"],
     "color": "text-yellow-400"
   },
   {
     "letter": "R",
-    "correct": "🌈",
-    "options": ["🌈", "☁️", "⚡"],
-    "name": "Arco-íris",
-    "syllables": ["AR", "CO", "Í", "RIS"],
-    "distractors": ["RE", "RI", "RO", "RU"],
-    "color": "text-pink-500"
+    "correct": "🐭",
+    "options": ["🐭", "🐹", "🐰"],
+    "name": "Rato",
+    "syllables": ["RA", "TO"],
+    "distractors": ["RE", "RI", "CA", "BO"],
+    "color": "text-stone-500"
   },
   {
     "letter": "S",
-    "correct": "🦈",
-    "options": ["🦈", "🐳", "🐬"],
-    "name": "Tubarão",
-    "syllables": ["TU", "BA", "RÃO"],
-    "distractors": ["SA", "SE", "SI", "SU"],
-    "color": "text-blue-600"
+    "correct": "🐸",
+    "options": ["🐸", "🐢", "🦎"],
+    "name": "Sapo",
+    "syllables": ["SA", "PO"],
+    "distractors": ["SE", "SI", "CA", "TO"],
+    "color": "text-green-500"
   },
   {
     "letter": "T",
-    "correct": "🐢",
-    "options": ["🐢", "🐇", "🦔"],
-    "name": "Tartaruga",
-    "syllables": ["TAR", "TA", "RU", "GA"],
-    "distractors": ["TA", "TE", "TI", "TO"],
-    "color": "text-emerald-600"
+    "correct": "🍅",
+    "options": ["🍅", "🍎", "🍓"],
+    "name": "Tomate",
+    "syllables": ["TO", "MA", "TE"],
+    "distractors": ["TA", "TI", "CA", "PO"],
+    "color": "text-red-500"
   },
   {
     "letter": "U",
-    "correct": "☂️",
-    "options": ["☂️", "🧢", "🎒"],
-    "name": "Guarda-chuva",
-    "syllables": ["GUAR", "DA", "CHU", "VA"],
-    "distractors": ["A", "E", "I", "O"],
-    "color": "text-red-500"
+    "correct": "🐻",
+    "options": ["🐻", "🐼", "🐰"],
+    "name": "Urso",
+    "syllables": ["UR", "SO"],
+    "distractors": ["A", "E", "SI", "PO"],
+    "color": "text-amber-700"
   },
   {
     "letter": "V",
-    "correct": "🎻",
-    "options": ["🎻", "🎸", "🎺"],
-    "name": "Violino",
-    "syllables": ["VI", "O", "LI", "NO"],
-    "distractors": ["VA", "VE", "VI", "VO"],
-    "color": "text-amber-600"
-  },
-  {
-    "letter": "W",
-    "correct": "🐋",
-    "options": ["🐋", "🐳", "🦈"],
-    "name": "Baleia",
-    "syllables": ["BA", "LEI", "A"],
-    "distractors": ["WA", "WE", "WI", "WO"],
-    "color": "text-blue-500"
-  },
-  {
-    "letter": "X",
-    "correct": "🦷",
-    "options": ["🦷", "🦴", "🦦"],
-    "name": "Dente",
-    "syllables": ["DEN", "TE"],
-    "distractors": ["XA", "XE", "XO", "XU"],
-    "color": "text-gray-500"
-  },
-  {
-    "letter": "Y",
-    "correct": "🥤",
-    "options": ["🥤", "🧃", "🥛"],
-    "name": "Iogurte",
-    "syllables": ["IO", "GUR", "TE"],
-    "distractors": ["YA", "YE", "YI", "YO"],
-    "color": "text-red-500"
+    "correct": "🐮",
+    "options": ["🐮", "🐷", "🐑"],
+    "name": "Vaca",
+    "syllables": ["VA", "CA"],
+    "distractors": ["VE", "VI", "BO", "SA"],
+    "color": "text-lime-600"
   },
   {
     "letter": "Z",
@@ -230,7 +194,7 @@
     "options": ["🦓", "🦒", "🐘"],
     "name": "Zebra",
     "syllables": ["ZE", "BRA"],
-    "distractors": ["ZA", "ZI", "ZO", "ZU"],
+    "distractors": ["ZA", "ZI", "BO", "LA"],
     "color": "text-gray-800"
   }
 ]
