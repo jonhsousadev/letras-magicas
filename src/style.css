@@ -165,3 +165,7 @@ button {
     -webkit-user-select: none;
     user-select: none;
 }
+
+#install-banner button {
+    min-height: 40px;
+}
