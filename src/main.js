@@ -3,13 +3,16 @@ import libraryData from './assets/data.json';
 
 const library = libraryData;
 
-const classicLibrary = library.map(({ letter, correct, options, name, color }) => ({
+const classicLibrary = library.map(({ letter, correct, options, name, color, gender }) => ({
     letter,
     correct,
     options,
     name,
-    color
+    color,
+    gender
 }));
+
+const getDefiniteArticle = (gender) => (gender === 'feminino' ? 'a' : 'o');
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -228,7 +231,8 @@ const handleClassicCorrect = (level, firstAttempt) => {
     playSound('success');
     score += firstAttempt ? 10 : 5;
     elScore.innerText = score;
-    elFeedback.innerText = firstAttempt ? `Muito bem! É o ${level.name}! ✨` : `Boa! É o ${level.name}! 🎉`;
+    const article = getDefiniteArticle(level.gender);
+    elFeedback.innerText = firstAttempt ? `Muito bem! É ${article} ${level.name}! ✨` : `Boa! É ${article} ${level.name}! 🎉`;
     elFeedback.className = "text-xl font-black scale-110 opacity-100 text-green-500 animate-pop";
     
     setTimeout(() => {

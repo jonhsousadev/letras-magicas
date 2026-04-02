@@ -4,6 +4,7 @@
     "correct": "🐝",
     "options": ["🐝", "🦋", "🐞"],
     "name": "Abelha",
+    "gender": "feminino",
     "syllables": ["A", "BE", "LHA"],
     "distractors": ["BO", "LA", "CA", "SA"],
     "color": "text-yellow-500"
@@ -13,6 +14,7 @@
     "correct": "⚽",
     "options": ["⚽", "🏀", "🎾"],
     "name": "Bola",
+    "gender": "feminino",
     "syllables": ["BO", "LA"],
     "distractors": ["BA", "BE", "LI", "LU"],
     "color": "text-slate-700"
@@ -22,6 +24,7 @@
     "correct": "🏠",
     "options": ["🏠", "🏫", "🏥"],
     "name": "Casa",
+    "gender": "feminino",
     "syllables": ["CA", "SA"],
     "distractors": ["CO", "CU", "LA", "MA"],
     "color": "text-yellow-600"
@@ -31,6 +34,7 @@
     "correct": "🎲",
     "options": ["🎲", "🧩", "🎯"],
     "name": "Dado",
+    "gender": "masculino",
     "syllables": ["DA", "DO"],
     "distractors": ["DE", "DI", "BO", "TO"],
     "color": "text-red-500"
@@ -40,6 +44,7 @@
     "correct": "⭐",
     "options": ["⭐", "☀️", "🌙"],
     "name": "Estrela",
+    "gender": "feminino",
     "syllables": ["ES", "TRE", "LA"],
     "distractors": ["TA", "LI", "PO", "CA"],
     "color": "text-yellow-400"
@@ -49,6 +54,7 @@
     "correct": "🌸",
     "options": ["🌸", "🌷", "🌻"],
     "name": "Flor",
+    "gender": "feminino",
     "syllables": ["FLOR"],
     "distractors": ["FA", "FE", "FI", "FO"],
     "color": "text-pink-500"
@@ -58,6 +64,7 @@
     "correct": "🐈",
     "options": ["🐈", "🐕", "🐇"],
     "name": "Gato",
+    "gender": "masculino",
     "syllables": ["GA", "TO"],
     "distractors": ["GE", "GI", "CA", "PO"],
     "color": "text-orange-400"
@@ -67,6 +74,7 @@
     "correct": "🏨",
     "options": ["🏨", "🏠", "🏫"],
     "name": "Hotel",
+    "gender": "masculino",
     "syllables": ["HO", "TEL"],
     "distractors": ["HA", "HI", "TO", "CA"],
     "color": "text-rose-500"
@@ -76,6 +84,7 @@
     "correct": "🏝️",
     "options": ["🏝️", "⛵", "🌊"],
     "name": "Ilha",
+    "gender": "feminino",
     "syllables": ["I", "LHA"],
     "distractors": ["LA", "LI", "LU", "NA"],
     "color": "text-sky-400"
@@ -85,6 +94,7 @@
     "correct": "🪟",
     "options": ["🪟", "🚪", "🪑"],
     "name": "Janela",
+    "gender": "feminino",
     "syllables": ["JA", "NE", "LA"],
     "distractors": ["JE", "JI", "CA", "SA"],
     "color": "text-cyan-500"
@@ -94,6 +104,7 @@
     "correct": "🌙",
     "options": ["🌙", "☀️", "⭐"],
     "name": "Lua",
+    "gender": "feminino",
     "syllables": ["LU", "A"],
     "distractors": ["LA", "LE", "LI", "MA"],
     "color": "text-blue-400"
@@ -103,6 +114,7 @@
     "correct": "🍎",
     "options": ["🍎", "🍌", "🍊"],
     "name": "Maçã",
+    "gender": "feminino",
     "syllables": ["MA", "ÇÃ"],
     "distractors": ["ME", "MI", "MO", "LA"],
     "color": "text-red-600"
@@ -112,6 +124,7 @@
     "correct": "🚢",
     "options": ["🚢", "⛵", "🚂"],
     "name": "Navio",
+    "gender": "masculino",
     "syllables": ["NA", "VI", "O"],
     "distractors": ["NE", "NI", "VA", "LU"],
     "color": "text-blue-500"
@@ -121,6 +134,7 @@
     "correct": "🥚",
     "options": ["🥚", "🧀", "🍞"],
     "name": "Ovo",
+    "gender": "masculino",
     "syllables": ["O", "VO"],
     "distractors": ["A", "E", "VI", "TO"],
     "color": "text-amber-300"
@@ -130,6 +144,7 @@
     "correct": "🦆",
     "options": ["🦆", "🐔", "🐦"],
     "name": "Pato",
+    "gender": "masculino",
     "syllables": ["PA", "TO"],
     "distractors": ["PE", "PI", "CA", "BO"],
     "color": "text-emerald-500"
@@ -139,6 +154,7 @@
     "correct": "🧀",
     "options": ["🧀", "🥚", "🍞"],
     "name": "Queijo",
+    "gender": "masculino",
     "syllables": ["QUEI", "JO"],
     "distractors": ["QUA", "QUI", "LA", "TO"],
     "color": "text-yellow-400"
@@ -148,6 +164,7 @@
     "correct": "🐭",
     "options": ["🐭", "🐹", "🐰"],
     "name": "Rato",
+    "gender": "masculino",
     "syllables": ["RA", "TO"],
     "distractors": ["RE", "RI", "CA", "BO"],
     "color": "text-stone-500"
@@ -157,6 +174,7 @@
     "correct": "🐸",
     "options": ["🐸", "🐢", "🦎"],
     "name": "Sapo",
+    "gender": "masculino",
     "syllables": ["SA", "PO"],
     "distractors": ["SE", "SI", "CA", "TO"],
     "color": "text-green-500"
@@ -166,6 +184,7 @@
     "correct": "🍅",
     "options": ["🍅", "🍎", "🍓"],
     "name": "Tomate",
+    "gender": "masculino",
     "syllables": ["TO", "MA", "TE"],
     "distractors": ["TA", "TI", "CA", "PO"],
     "color": "text-red-500"
@@ -175,6 +194,7 @@
     "correct": "🐻",
     "options": ["🐻", "🐼", "🐰"],
     "name": "Urso",
+    "gender": "masculino",
     "syllables": ["UR", "SO"],
     "distractors": ["A", "E", "SI", "PO"],
     "color": "text-amber-700"
@@ -184,6 +204,7 @@
     "correct": "🐮",
     "options": ["🐮", "🐷", "🐑"],
     "name": "Vaca",
+    "gender": "feminino",
     "syllables": ["VA", "CA"],
     "distractors": ["VE", "VI", "BO", "SA"],
     "color": "text-lime-600"
@@ -193,6 +214,7 @@
     "correct": "🦓",
     "options": ["🦓", "🦒", "🐘"],
     "name": "Zebra",
+    "gender": "feminino",
     "syllables": ["ZE", "BRA"],
     "distractors": ["ZA", "ZI", "BO", "LA"],
     "color": "text-gray-800"
