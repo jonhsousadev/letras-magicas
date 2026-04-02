@@ -32,6 +32,9 @@ let currentSyllables = [];
 let selectedSyllables = [];
 let deferredInstallPrompt = null;
 
+const INSTALL_BANNER_DISMISSED_AT_KEY = 'letras_magicas_install_banner_dismissed_at';
+const INSTALL_BANNER_COOLDOWN_DAYS = 7;
+
 const screens = {
     start: document.getElementById('screen-start'),
     playing: document.getElementById('screen-playing'),
@@ -172,14 +175,27 @@ const isStandaloneMode = () => window.matchMedia('(display-mode: standalone)').m
 
 const isMobileDevice = () => {
     const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const hasTouch = navigator.maxTouchPoints > 0;
     const mobileUA = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    return coarsePointer || mobileUA;
+    return coarsePointer || hasTouch || mobileUA;
 };
 
-const isIOS = () => /iPhone|iPad|iPod/i.test(navigator.userAgent);
+const isIOS = () => {
+    const isClassicIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+    return isClassicIOS || isIPadOS;
+};
+
+const isInstallBannerCooldownActive = () => {
+    const dismissedAt = Number(localStorage.getItem(INSTALL_BANNER_DISMISSED_AT_KEY) || 0);
+    if (!dismissedAt) return false;
+
+    const cooldownMs = INSTALL_BANNER_COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
+    return (Date.now() - dismissedAt) < cooldownMs;
+};
 
 const shouldHideInstallBanner = () => {
-    const dismissed = localStorage.getItem('letras_magicas_install_banner_dismissed') === '1';
+    const dismissed = isInstallBannerCooldownActive();
     return dismissed || isStandaloneMode() || !isMobileDevice();
 };
 
@@ -526,7 +542,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 window.addEventListener('appinstalled', () => {
     deferredInstallPrompt = null;
-    localStorage.setItem('letras_magicas_install_banner_dismissed', '1');
+    localStorage.setItem(INSTALL_BANNER_DISMISSED_AT_KEY, Date.now().toString());
     if (elInstallBanner) {
         elInstallBanner.classList.add('hidden');
     }
@@ -547,14 +563,20 @@ if (elBtnInstallApp) {
 
 if (elBtnDismissInstall) {
     elBtnDismissInstall.onclick = () => {
-        localStorage.setItem('letras_magicas_install_banner_dismissed', '1');
+        localStorage.setItem(INSTALL_BANNER_DISMISSED_AT_KEY, Date.now().toString());
         if (elInstallBanner) {
             elInstallBanner.classList.add('hidden');
         }
     };
 }
 
-window.onload = () => {
+const initializeApp = () => {
     updateHighScores();
     setupInstallBanner();
 };
+
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
