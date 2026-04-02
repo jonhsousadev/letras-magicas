@@ -53,33 +53,80 @@ const elHighScoresClassic = document.getElementById('high-scores-classic');
 const elHighScoresSyllables = document.getElementById('high-scores-syllables');
 const elModalQuit = document.getElementById('modal-quit');
 
+let audioCtx = null;
+
+const getAudioContext = () => {
+    if (audioCtx) return audioCtx;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    audioCtx = new AudioCtx();
+    return audioCtx;
+};
+
+const unlockAudio = () => {
+    const ctx = getAudioContext();
+    if (ctx && ctx.state === 'suspended') {
+        ctx.resume().catch(() => {});
+    }
+};
+
+const playTone = (ctx, { type = 'sine', from = 440, to = 440, duration = 0.18, volume = 0.1 }) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const now = ctx.currentTime;
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(from, now);
+    if (to !== from) {
+        osc.frequency.exponentialRampToValueAtTime(Math.max(1, to), now + duration);
+    }
+
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(volume, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + duration + 0.02);
+};
+
 const playSound = (type) => {
     try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        
-        if (type === 'start') {
-            osc.type = 'sine'; osc.frequency.setValueAtTime(440, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.5);
-        } else if (type === 'success') {
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-            osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
-            osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2);
-        } else if (type === 'error') {
-            osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, ctx.currentTime);
-        } else if (type === 'syllable') {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.1);
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        if (ctx.state === 'suspended') {
+            // Browsers bloqueiam áudio até interação do usuário.
+            ctx.resume().catch(() => {});
         }
-        
-        gain.gain.setValueAtTime(0.1, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-        osc.connect(gain); gain.connect(ctx.destination);
-        osc.start(); osc.stop(ctx.currentTime + 0.3);
-    } catch (e) { console.error("Áudio não suportado"); }
+
+        if (type === 'start') {
+            playTone(ctx, { type: 'sine', from: 440, to: 880, duration: 0.25, volume: 0.08 });
+            return;
+        }
+
+        if (type === 'syllable') {
+            playTone(ctx, { type: 'triangle', from: 620, to: 820, duration: 0.12, volume: 0.07 });
+            return;
+        }
+
+        if (type === 'success' || type === 'win') {
+            playTone(ctx, { type: 'triangle', from: 523.25, to: 659.25, duration: 0.14, volume: 0.09 });
+            setTimeout(() => playTone(ctx, { type: 'triangle', from: 659.25, to: 783.99, duration: 0.16, volume: 0.09 }), 80);
+            return;
+        }
+
+        if (type === 'lose') {
+            playTone(ctx, { type: 'sawtooth', from: 220, to: 130, duration: 0.24, volume: 0.08 });
+            return;
+        }
+
+        if (type === 'error') {
+            playTone(ctx, { type: 'sawtooth', from: 180, to: 120, duration: 0.16, volume: 0.07 });
+        }
+    } catch (e) {
+        console.error('Áudio não suportado');
+    }
 };
 
 const showScreen = (name) => {
@@ -297,7 +344,7 @@ const handleSyllableClick = (syllable, btn) => {
 
 const handleSyllablesCorrect = (level) => {
     isProcessing = true;
-    playSound('success');
+    playSound('win');
     score += 10;
     elScore.innerText = score;
     elFeedback.innerText = `Excelente! ${level.name}! ✨`;
@@ -310,8 +357,12 @@ const handleSyllablesCorrect = (level) => {
 };
 
 const handleSyllablesWrong = () => {
-    playSound('error');
     attemptsLeft--;
+    if (attemptsLeft <= 0) {
+        playSound('lose');
+    } else {
+        playSound('error');
+    }
     updateAttemptsDisplay();
     
     if (attemptsLeft <= 0) {
@@ -372,8 +423,14 @@ const startGame = (mode) => {
     }
 };
 
-document.getElementById('btn-start-classic').onclick = () => startGame('classic');
-document.getElementById('btn-start-syllables').onclick = () => startGame('syllables');
+document.getElementById('btn-start-classic').onclick = () => {
+    unlockAudio();
+    startGame('classic');
+};
+document.getElementById('btn-start-syllables').onclick = () => {
+    unlockAudio();
+    startGame('syllables');
+};
 
 document.getElementById('btn-restart').onclick = () => {
     updateHighScores();
@@ -401,9 +458,13 @@ elModalQuit.onclick = (event) => {
 };
 
 window.addEventListener('keydown', (event) => {
+    unlockAudio();
     if (event.key === 'Escape') {
         elModalQuit.classList.add('hidden');
     }
 });
+
+window.addEventListener('pointerdown', unlockAudio, { passive: true });
+window.addEventListener('touchstart', unlockAudio, { passive: true });
 
 window.onload = updateHighScores;
