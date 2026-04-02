@@ -206,7 +206,8 @@ const showInstallBanner = (message, isActionableInstall) => {
         elInstallBannerText.innerText = message;
     }
     if (elBtnInstallApp) {
-        elBtnInstallApp.style.display = isActionableInstall ? 'inline-flex' : 'none';
+        elBtnInstallApp.style.display = 'inline-flex';
+        elBtnInstallApp.innerText = isActionableInstall ? 'Instalar' : 'Como instalar';
     }
 };
 
@@ -550,14 +551,22 @@ window.addEventListener('appinstalled', () => {
 
 if (elBtnInstallApp) {
     elBtnInstallApp.onclick = async () => {
-        if (!deferredInstallPrompt) return;
-
-        deferredInstallPrompt.prompt();
-        const choice = await deferredInstallPrompt.userChoice;
-        if (choice && choice.outcome !== 'accepted') {
-            showInstallBanner('Quando quiseres, podes instalar por este botão.', true);
+        if (deferredInstallPrompt) {
+            deferredInstallPrompt.prompt();
+            const choice = await deferredInstallPrompt.userChoice;
+            if (choice && choice.outcome !== 'accepted') {
+                showInstallBanner('Quando quiseres, podes instalar por este botão.', true);
+            }
+            deferredInstallPrompt = null;
+            return;
         }
-        deferredInstallPrompt = null;
+
+        if (isIOS()) {
+            showInstallBanner('No Safari: toca em Partilhar e depois em "Adicionar ao ecrã principal".', false);
+            return;
+        }
+
+        showInstallBanner('Abre o menu do navegador e procura por "Instalar app" ou "Adicionar ao ecrã inicial".', false);
     };
 }
 
