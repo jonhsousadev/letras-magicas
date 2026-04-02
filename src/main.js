@@ -30,6 +30,7 @@ let currentMode = 'classic';
 let attemptsLeft = 2;
 let currentSyllables = [];
 let selectedSyllables = [];
+let deferredInstallPrompt = null;
 
 const screens = {
     start: document.getElementById('screen-start'),
@@ -55,6 +56,10 @@ const elGameQuestion = document.getElementById('game-question');
 const elHighScoresClassic = document.getElementById('high-scores-classic');
 const elHighScoresSyllables = document.getElementById('high-scores-syllables');
 const elModalQuit = document.getElementById('modal-quit');
+const elInstallBanner = document.getElementById('install-banner');
+const elInstallBannerText = document.getElementById('install-banner-text');
+const elBtnInstallApp = document.getElementById('btn-install-app');
+const elBtnDismissInstall = document.getElementById('btn-dismiss-install');
 
 let audioCtx = null;
 
@@ -161,6 +166,45 @@ const updateHighScores = () => {
                 <span>⭐ ${s}</span>
             </div>`).join('')
         : '<p class="text-purple-400 text-xs">Sem recordes</p>';
+};
+
+const isStandaloneMode = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+const isMobileDevice = () => {
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const mobileUA = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return coarsePointer || mobileUA;
+};
+
+const isIOS = () => /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+const shouldHideInstallBanner = () => {
+    const dismissed = localStorage.getItem('letras_magicas_install_banner_dismissed') === '1';
+    return dismissed || isStandaloneMode() || !isMobileDevice();
+};
+
+const showInstallBanner = (message, isActionableInstall) => {
+    if (!elInstallBanner) return;
+    elInstallBanner.classList.remove('hidden');
+    if (message && elInstallBannerText) {
+        elInstallBannerText.innerText = message;
+    }
+    if (elBtnInstallApp) {
+        elBtnInstallApp.style.display = isActionableInstall ? 'inline-flex' : 'none';
+    }
+};
+
+const setupInstallBanner = () => {
+    if (!elInstallBanner || shouldHideInstallBanner()) {
+        return;
+    }
+
+    if (isIOS()) {
+        showInstallBanner('No Safari, toca em Partilhar e depois em "Adicionar ao ecrã principal".', false);
+        return;
+    }
+
+    showInstallBanner('Fica mais rápido de abrir e funciona melhor em ecrã cheio.', false);
 };
 
 const updateAttemptsDisplay = () => {
@@ -471,4 +515,46 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('pointerdown', unlockAudio, { passive: true });
 window.addEventListener('touchstart', unlockAudio, { passive: true });
 
-window.onload = updateHighScores;
+window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+
+    if (!shouldHideInstallBanner()) {
+        showInstallBanner('Fica mais rápido de abrir e funciona melhor em ecrã cheio.', true);
+    }
+});
+
+window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    localStorage.setItem('letras_magicas_install_banner_dismissed', '1');
+    if (elInstallBanner) {
+        elInstallBanner.classList.add('hidden');
+    }
+});
+
+if (elBtnInstallApp) {
+    elBtnInstallApp.onclick = async () => {
+        if (!deferredInstallPrompt) return;
+
+        deferredInstallPrompt.prompt();
+        const choice = await deferredInstallPrompt.userChoice;
+        if (choice && choice.outcome !== 'accepted') {
+            showInstallBanner('Quando quiseres, podes instalar por este botão.', true);
+        }
+        deferredInstallPrompt = null;
+    };
+}
+
+if (elBtnDismissInstall) {
+    elBtnDismissInstall.onclick = () => {
+        localStorage.setItem('letras_magicas_install_banner_dismissed', '1');
+        if (elInstallBanner) {
+            elInstallBanner.classList.add('hidden');
+        }
+    };
+}
+
+window.onload = () => {
+    updateHighScores();
+    setupInstallBanner();
+};
