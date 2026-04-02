@@ -1,6 +1,6 @@
 {
-  "name": "Letras Mágicas",
-  "short_name": "Letras",
+  "name": "Blush Palavrinhas mágicas",
+  "short_name": "Blush",
   "description": "Jogo educativo para aprender letras e formar palavras",
   "start_url": "/",
   "display": "standalone",
@@ -9,15 +9,9 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
